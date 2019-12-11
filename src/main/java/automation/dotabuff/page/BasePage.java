@@ -24,44 +24,5 @@ public class BasePage {
 	
 	public void Abrir() {
 		driver.get(url);
-	}
-	
-	public String RetornarUrl() {
-		return url;
-	}
-	
-	protected void DigitarTexto(By by, String key) {
-		driver.findElement(by).sendKeys(key);
-	}
-	
-	public boolean VerificarTexto(String txt) {
-		return driver.getPageSource().contains(txt);
-	}
-	
-	public boolean VerificarElemento(By by) {
-		try {
-			driver.findElement(by);
-			return true;
-		}catch(NoSuchElementException e) {
-			System.out.println(e);
-			return false;
-		}
-	}
-	
-	public boolean VerificarExibicaoElemento(By by) {
-		try {
-			return driver.findElement(by).isDisplayed();
-		}catch(NoSuchElementException e) {
-			System.out.println(e);
-			return false;
-		}
-	}
-	
-	public WebElement RetornarWebElement(By by) {
-		return driver.findElement(by);
-	}
-	
-	
-	
-	
+	}	
 }
