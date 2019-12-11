@@ -1,38 +1,37 @@
 package automation.dotabuff;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.AfterClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import automation.dotabuff.utils.DriverManager;
+import automation.dotabuff.utils.DriverManagerFactory;
+import automation.dotabuff.utils.DriverType;
+import junit.framework.Assert;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+public class AppTest {
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	DriverManager driverManager;
+	WebDriver driver;
+	String url = "https://www.dotabuff.com/";
+	String title = "DOTABUFF - Dota 2 Statistics";
+	
+	
+	@Test
+	public void DotabuffTest() {
+		driverManager = DriverManagerFactory.GetDriverManager(DriverType.CHROME);
+		driver = driverManager.GetWebDriver();
+		driver.get(url);
+		
+		Assert.assertEquals(title, driver.getTitle());
+		
+	}
+	
+	@AfterClass
+	public void TearDown() {
+		driverManager.QuitWebDriver();
+	}
+	
+	
+	
 }
