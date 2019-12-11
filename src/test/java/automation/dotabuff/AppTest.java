@@ -34,10 +34,7 @@ public class AppTest {
 	
 	@Test
 	public void SearchTest() {
-		
-		home.Procurar();
-		
-		
+		home.Procurar();		
 	}
 	
 	@AfterClass
