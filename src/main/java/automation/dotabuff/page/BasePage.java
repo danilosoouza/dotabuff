@@ -2,6 +2,7 @@ package automation.dotabuff.page;
 
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -43,19 +44,19 @@ public class BasePage {
 	}
 	
 	public void VerificarDigitar(WebElement el, String texto) {
-		DigitarTexto(EsperarElementoExistir(el), texto);
+		DigitarTexto(el, texto);
 	}
 	
 	public void DigitarTexto(WebElement el, String texto) {
 		el.sendKeys(texto);
+		el.sendKeys(Keys.RETURN);
 	}
 	
 	public void Clickar(WebElement el) {
 		el.click();
 	}
 	
-	public void FazerBusca(WebElement input, WebElement btn, String texto) {
-		VerificarDigitar(input, texto);
-		Clickar(btn);
+	public void FazerBusca(WebElement input, String texto) {
+		DigitarTexto(input, texto);
 	}
 }

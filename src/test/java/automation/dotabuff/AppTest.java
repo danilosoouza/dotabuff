@@ -9,36 +9,36 @@ import automation.dotabuff.page.HomePage;
 import automation.dotabuff.utils.DriverManager;
 import automation.dotabuff.utils.DriverManagerFactory;
 import automation.dotabuff.utils.DriverType;
-import junit.framework.Assert;
 
 public class AppTest {
 
-	DriverManager driverManager;
-	WebDriver driver;
-	String url = "https://www.dotabuff.com/";
-	String title = "DOTABUFF - Dota 2 Statistics";
+	static DriverManager driverManager;
+	static WebDriver driver;
+	static String url = "https://www.opendota.com/";
+	String title = "";
 	
-	HomePage home;
+	static HomePage home;
 	
 	@BeforeClass
-	public void Init() {
+	public static void Initializing() {
 		driverManager = DriverManagerFactory.GetDriverManager(DriverType.CHROME);
 		driver = driverManager.GetWebDriver();
 		//Abrir navegador na pagina
-		driver.get(url);
 		//Adicionar todos os PageObjects abaixo
 		home = new HomePage(driver);
 		
+		
+		driver.get(url);
 	}
 	
 	
 	@Test
-	public void SearchTest() {
+	public void SearchTest(){
 		home.Procurar();		
 	}
 	
 	@AfterClass
-	public void TearDown() {
+	public static void TearDown() {
 		driverManager.QuitWebDriver();
 	}
 	
