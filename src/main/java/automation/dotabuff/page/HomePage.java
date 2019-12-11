@@ -18,7 +18,7 @@ public class HomePage extends BasePage{
 	}
 	
 	public void Procurar() {
-
+		FazerBusca(inputSearch, buttonSearch, "Akemiii");
 	}
 		
 	

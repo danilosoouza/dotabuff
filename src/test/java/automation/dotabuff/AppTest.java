@@ -1,9 +1,11 @@
 package automation.dotabuff;
 
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
+import automation.dotabuff.page.HomePage;
 import automation.dotabuff.utils.DriverManager;
 import automation.dotabuff.utils.DriverManagerFactory;
 import automation.dotabuff.utils.DriverType;
@@ -16,14 +18,25 @@ public class AppTest {
 	String url = "https://www.dotabuff.com/";
 	String title = "DOTABUFF - Dota 2 Statistics";
 	
+	HomePage home;
 	
-	@Test
-	public void DotabuffTest() {
+	@BeforeClass
+	public void Init() {
 		driverManager = DriverManagerFactory.GetDriverManager(DriverType.CHROME);
 		driver = driverManager.GetWebDriver();
+		//Abrir navegador na pagina
 		driver.get(url);
+		//Adicionar todos os PageObjects abaixo
+		home = new HomePage(driver);
 		
-		Assert.assertEquals(title, driver.getTitle());
+	}
+	
+	
+	@Test
+	public void SearchTest() {
+		
+		home.Procurar();
+		
 		
 	}
 	

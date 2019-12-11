@@ -1,5 +1,7 @@
 package automation.dotabuff.page;
 
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +13,6 @@ public class BasePage {
 
 	private static final int WAIT_IN_SECONDS = 15;
 	private static final int PAGE_LOAD_TIMEOUT_SECONDS = 180;
-	protected String url;
 	protected WebDriver driver;
 	
 	public BasePage(WebDriver driver)
@@ -21,10 +22,6 @@ public class BasePage {
 		
 	}
 	
-	public void Abrir() {
-		driver.get(url);
-	}	
-	
 	public boolean ElementoExiste(WebElement el) {
 		return el != null;		
 	}
@@ -32,11 +29,16 @@ public class BasePage {
 	public boolean EsperarElementoSerVisivel(WebElement el) {
 		return el.isDisplayed();
 	}
-	
+	//TODO Refatorar alguns métodos
 	public WebElement EsperarElementoExistir(WebElement el) {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_IN_SECONDS);
 		wait.until(ExpectedConditions.visibilityOf(el));
-		
+		return el;
+	}
+	
+	public WebElement EsperarElementoSerClicavel(WebElement el) {
+		WebDriverWait wait = new WebDriverWait(driver, WAIT_IN_SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(el));
 		return el;
 	}
 	
@@ -50,5 +52,10 @@ public class BasePage {
 	
 	public void Clickar(WebElement el) {
 		el.click();
+	}
+	
+	public void FazerBusca(WebElement input, WebElement btn, String texto) {
+		VerificarDigitar(input, texto);
+		Clickar(btn);
 	}
 }
