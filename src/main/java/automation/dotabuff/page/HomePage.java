@@ -17,8 +17,8 @@ public class HomePage extends BasePage{
 		super(driver);
 	}
 	
-	public void Procurar(String text) {
-		
+	public void Procurar() {
+
 	}
 		
 	
